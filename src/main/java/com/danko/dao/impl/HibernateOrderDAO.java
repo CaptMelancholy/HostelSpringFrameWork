@@ -30,7 +30,7 @@ public class HibernateOrderDAO implements OrderDAO {
         try(Session session = sessionFactory.openSession()) {
             User user = session.get(User.class,userId);
             Rooms rooms = session.get(Rooms.class, roomId);
-            orders.setRooms(rooms);
+            orders.setRoomsOrders(rooms);
             orders.setUsers(user);
             session.getTransaction().begin();
             session.save(orders);

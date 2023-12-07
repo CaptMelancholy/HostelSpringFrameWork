@@ -1,6 +1,7 @@
 package com.danko.dao.impl;
 
 import com.danko.dao.RoomsDAO;
+import com.danko.entity.orders.Orders;
 import com.danko.entity.rooms.Rooms;
 import com.danko.entity.user.User;
 import com.danko.utils.HibernateSessionFactory;
@@ -24,22 +25,42 @@ public class HibernateRoomsDAO implements RoomsDAO {
 
     @Override
     public Rooms findRoomByID(Long ID) {
-        return null;
+        try(Session session = sessionFactory.openSession()) {
+            Rooms rooms = session.get(Rooms.class, ID);
+            return rooms;
+        }
     }
 
     @Override
     public void deleteRoom(long ID) {
-
+        try(Session session = sessionFactory.openSession()) {
+            Rooms rooms = session.get(Rooms.class, ID);
+            session.getTransaction().begin();
+            session.delete(rooms);
+            session.getTransaction().commit();
+        }
     }
 
     @Override
     public void addRoom(Rooms rooms) {
-
+        try(Session session = sessionFactory.openSession()) {
+            session.getTransaction().begin();
+            session.save(rooms);
+            session.getTransaction().commit();
+        }
     }
 
     @Override
-    public void updateRoom(Rooms rooms) {
-
+    public void updateRoom(Rooms rooms, long ID) {
+        try(Session session = sessionFactory.openSession()) {
+            Rooms tempRooms = session.get(Rooms.class, ID);
+            tempRooms.setRooms_discription(rooms.getRooms_discription());
+            tempRooms.setRooms_guest_amount(rooms.getRooms_guest_amount());
+            tempRooms.setRooms_price(rooms.getRooms_price());
+            session.getTransaction().begin();
+            session.update(tempRooms);
+            session.getTransaction().commit();
+        }
     }
 
     @Override

@@ -2,10 +2,12 @@ package com.danko.Controllers;
 
 import com.danko.dao.RoomsDAO;
 import com.danko.dao.UserDAO;
+import com.danko.entity.rooms.Rooms;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +27,9 @@ public class AdminRoomsController {
     }
 
     @PostMapping
-    public String doPost() {
-        return "";
+    public String doPost(HttpServletRequest request, @RequestParam(name = "num") String amount, @RequestParam(name = "price") String price, @RequestParam(name = "description") String description) {
+        roomsDAO.addRoom(new Rooms(amount, price, description));
+        request.setAttribute("rooms", roomsDAO.findAllRooms());
+        return "admin_rooms";
     }
 }

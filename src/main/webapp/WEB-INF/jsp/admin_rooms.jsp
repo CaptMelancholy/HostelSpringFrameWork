@@ -70,7 +70,7 @@
                                     EDIT
                                 </button>
                             </form>
-                            <form action="/admin/rooms/action" method="POST">
+                            <form action="/admin/rooms/delete" method="POST">
                                 <input type="hidden" name="sub" value="delete" />
                                 <input type="hidden" name="id" value="${room.id_rooms}" />
                                 <button type="submit" class="btn btn-danger">

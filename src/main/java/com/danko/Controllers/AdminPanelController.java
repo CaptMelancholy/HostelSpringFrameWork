@@ -43,6 +43,6 @@ public class AdminPanelController {
             }
         }
         request.setAttribute("users", userDAO.findAllUsers());
-        return "/admin";
+        return "admin";
     }
 }

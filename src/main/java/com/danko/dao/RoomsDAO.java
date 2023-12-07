@@ -8,7 +8,7 @@ public interface RoomsDAO {
     Rooms findRoomByID(Long ID);
     void deleteRoom(long ID);
     void addRoom(Rooms rooms);
-    void updateRoom(Rooms rooms);
+    void updateRoom(Rooms rooms, long ID);
 
     List<Rooms> findAllRooms();
 }

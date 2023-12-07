@@ -36,9 +36,9 @@ public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_order;
-    @OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="rooms_id_rooms", referencedColumnName = "id_rooms")
-    private Rooms rooms;
+    private Rooms roomsOrders;
     @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id_user", referencedColumnName = "id_user")
     private User users;

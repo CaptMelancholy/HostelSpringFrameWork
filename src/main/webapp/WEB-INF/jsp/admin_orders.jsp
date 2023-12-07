@@ -41,7 +41,7 @@
                 <c:forEach var="order" items="${orders}">
                     <tr>
                         <th scope="row">${order.id_order}</th>
-                        <td>${order.rooms.id_rooms}</td>
+                        <td>${order.roomsOrders.id_rooms}</td>
                         <td>${order.order_type}</td>
                         <td>${order.order_name}</td>
                         <td>${order.order_surname}</td>

@@ -1,10 +1,12 @@
 package com.danko.entity.rooms;
 
 
+import com.danko.entity.orders.Orders;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -27,4 +29,7 @@ public class Rooms {
     private float rooms_price;
     private String rooms_discription;
     private Boolean rooms_deleted;
+
+    @OneToMany(mappedBy = "roomsOrders", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<Orders> ordersList;
 }
